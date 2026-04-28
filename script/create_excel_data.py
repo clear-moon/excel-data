@@ -73,27 +73,27 @@ def write_data_to_excel(
 
 
 def main():
-    # 默认列配置：与「创建品牌展示窗列表模板」数据列顺序一致，可按需增删或改 increment
+    # ======= 配置参数 =======
     DEFAULT_COLUMN_SPECS: list[FieldSpec] = [
-        FieldSpec(True, "品牌名称"),
-        FieldSpec(True, "品牌介绍"),
-        FieldSpec(False, "北京市"),
-        FieldSpec(False, "生产厂家"),
-        FieldSpec(False, "生物医药"),
+        FieldSpec(True, "一级分类"),
+        FieldSpec(False, "二级分类"),
+        FieldSpec(True, "多分类批量名称"),  # true 代表按行号自增
+        FieldSpec(True, "简介"),
+        FieldSpec(False, "详情链接"),
     ]
+    file_path = "C:/Users/YAO/Desktop/python_code/excel-data/data/创建科研辅助工具列表模板 (5).xlsx"
+    data_number = 1000
+    # ======= 配置参数 =======
 
-    file_path = "C:/Users/jichen/Desktop/python_code/excel_data/data/创建品牌展示窗列表模板.xlsx"
     # 打开文件
     workbook = load_workbook(file_path)
-    sheet = workbook.active 
+    sheet = workbook.active
     # 定位数据区最后一行
     data_last_row = find_data_last_row(sheet)
     # 定位数据区第一行
     data_first_row = data_last_row + 1
-    # 写入数据行数
-    data_number = 1000
-    # 写入数据
 
+    # 写入数据
     write_data_to_excel(
         file_path, sheet, data_first_row, data_number, DEFAULT_COLUMN_SPECS
     )
